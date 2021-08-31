@@ -1,5 +1,8 @@
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import time
+from datetime import datetime
+
 import vk_api
 from vk_api.bot_longpoll import VkBotEventType, VkBotLongPoll
 from vk_api.utils import get_random_id
@@ -13,18 +16,22 @@ log.add("debug.log", format="{time} {level} {message}", level="DEBUG", rotation=
 
 vk = vk_api.VkApi(token=data.TOKEN)
 vk_session = vk.get_api()
-longpoll = VkBotLongPoll(vk, 'YOUR ID')    # <--- write id here
+# longpoll = VkBotLongPoll(vk, 206847683)    # <--- write id here
 
 
 @log.catch()
 def run():
     while True:
         try:
-            for event in longpoll.listen():
-
-                if event.type == VkBotEventType.MESSAGE_NEW:
-                    response = event.text.lower()
-                    # <-- body
+            # if '21:00:' not in str(datetime.now()):
+            r = vk.method('messages.send', {
+                'chat_id': 1,
+                'random_id': get_random_id(),
+                'message': None,
+                'attachment': 'video-206847683_456239017'
+            })
+            log.debug(r)
+            time.sleep(60*60*24)
 
         except KeyboardInterrupt:
             log.info('Bot stopped')
