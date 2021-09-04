@@ -18,7 +18,7 @@ vk = vk_api.VkApi(token=data.TOKEN)
 vk_session = vk.get_api()
 # longpoll = VkBotLongPoll(vk, 206847683)    # <--- write id here
 
-def isworkday(): # эта функция проверят номер дня и не допускает работу бота  по субботам(5) и воскресеньям(6)
+def isworkday(): # эта функция проверят номер дня и не допускает работу бота  по субботам(5) и пятницам(4)
     return datetime.datetime.today().weekday() not in (5, 4)
 
 
