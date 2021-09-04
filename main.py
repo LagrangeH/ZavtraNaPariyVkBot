@@ -20,7 +20,7 @@ vk_session = vk.get_api()
 
 def isworkday(): # эта функция проверят номер дня и не допускает работу бота  по субботам(5) и воскресеньям(6)
     today = datetime.datetime.today().weekday()
-    if today != 5 or today !=  6 :
+    if today not in (5,6):
         return True
     else:
         return False
